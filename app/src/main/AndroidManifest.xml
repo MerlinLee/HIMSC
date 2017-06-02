@@ -72,7 +72,12 @@
             android:theme="@android:style/Theme.Holo.Dialog" />
         <activity
             android:name=".views.tests.TestSmallActivity"
-            android:theme="@android:style/Theme.Holo.Dialog"/>
+            android:theme="@android:style/Theme.Holo.Dialog" />
+
+        <service
+            android:name=".controller.services.UploadServerController.NewBrunchService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>
