@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cn.edu.jlu.limf.himsc.views.TestActivity">
+
+    <LinearLayout
+        android:layout_width="344dp"
+        android:layout_height="495dp"
+        android:orientation="vertical"
+        >
+
+        <com.dd.processbutton.FlatButton
+            android:id="@+id/btn_open_bluetooth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:pb_colorNormal="@color/holo_green_light"
+            app:pb_colorPressed="@color/holo_orange_light"
+            android:text="点击打开蓝牙"/>
+        <com.dd.processbutton.FlatButton
+            android:id="@+id/btn_open_new_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="打开新的活动"/>
+        <com.dd.processbutton.FlatButton
+            android:id="@+id/btn_open_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:pb_colorNormal="@color/holo_green_light"
+            app:pb_colorPressed="@color/holo_red_light"
+            android:text="打开服务"/>
+        <com.dd.processbutton.FlatButton
+            android:id="@+id/btn_test1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="打开例子2"/>
+
+        <com.dd.processbutton.FlatButton
+            android:id="@+id/btn_start_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:pb_colorNormal="@color/holo_orange_light"
+            app:pb_colorPressed="@color/holo_red_light"
+            android:text="打开例子之定时"/>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

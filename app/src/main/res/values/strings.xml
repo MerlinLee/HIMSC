@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">HIMSC</string>
+    <string name="strInputAccHint">输入真实姓名</string>
+    <string name="strInputuAccIDHint">输入身份证号</string>
+    <string name="strInputAddressHint">输入地址</string>
+    <string name="strAccInputLabel">姓名</string>
+    <string name="strPswInputLabel">密码</string>
+    <string name="strUserAccountIDInputLabel">身份证号</string>
+    <string name="strUserAddressInputLabel">地 址</string>
+    <string name="opt_remember">记住密码</string>
+    <string name="login">登 录</string>
+    <string name="regist">注 册</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <!--  DeviceListActivity -->
+    <string name="scanning">scanning for devices...</string>
+    <string name="select_device">选择一个设备连接</string>
+    <string name="none_paired">No devices have been paired</string>
+    <string name="none_found">No devices found</string>
+    <string name="title_paired_devices">Paired Devices</string>
+    <string name="title_other_devices">Other Available Devices</string>
+    <string name="button_scan">Scan for devices</string>
+    <!-- Options Menu -->
+    <string name="secure_connect">Connect a device - Secure</string>
+    <string name="insecure_connect">Connect a device - Insecure</string>
+    <string name="discoverable">Make discoverable</string>
+    <!--Activity_test_small中的string-->
+    <string name="check_health_value">检查数据异常</string>
+    <string name="exception_health">数据异常</string>
+    <string name="alarm">报警</string>
+    <string name="normal">数据正常</string>
+</resources>
