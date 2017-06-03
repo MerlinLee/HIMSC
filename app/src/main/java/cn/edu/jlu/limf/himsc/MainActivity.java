@@ -32,7 +32,7 @@ import cn.edu.jlu.limf.himsc.views.TestActivity;
 
 public class MainActivity extends AppCompatActivity {
     private Context context=this;
-    private String url="http://49.140.92.170:8080";
+    private String url="http://merlin-lee.com:8080";
     static String TAG = "Merlin";
     private Intent intent_test=null;
     private String connect_status="";
@@ -42,8 +42,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (LeakCanary.isInAnalyzerProcess(this)) {
-            // This process is dedicated to LeakCanary for heap analysis.
-            // You should not init your app in this process.
+
             return;
         }
         LeakCanary.install(this.getApplication());

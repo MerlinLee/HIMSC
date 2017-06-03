@@ -46,7 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
                 userRegisterInfo.setUserAccountId(edit_Text_accountid.getText().toString());
                 userRegisterInfo.setUserAddress(edit_Text_address.getText().toString());
                 final String post_json_user_info = gson_register.toJson(userRegisterInfo);
-                final String url = "http://49.140.92.170:8080/himsc/register_from_himsc";
+                final String url = "http://merlin-lee.com:8080/himsc/register_from_himsc";
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
