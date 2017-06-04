@@ -50,6 +50,8 @@ import com.google.gson.Gson;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+
+import cn.edu.jlu.limf.himsc.MyApplication.WholeDataApplication;
 import cn.edu.jlu.limf.himsc.R;
 import cn.edu.jlu.limf.himsc.controller.HealthExceptionAlarm.AlarmModuleController;
 import cn.edu.jlu.limf.himsc.controller.services.BluetoothController.IOs.GetJson;
@@ -70,6 +72,7 @@ import cn.edu.jlu.limf.himsc.views.SmallBluetoothDeviceActivity;
  * @项目进度更新: 成功!!
 */
 public class BluetoothMainController extends Service {
+    private WholeDataApplication wholeDataApplication;
     private static final String TAG = "Merlin";
     private final String NAME = "Bluetooth_Socket";
     // 获取到选中设备的客户端串口，全局变量，否则连接在方法执行完就结束了
@@ -124,6 +127,7 @@ public class BluetoothMainController extends Service {
         super.onCreate();
         gson=new Gson();
         getJson = new GetJson();
+        wholeDataApplication=(WholeDataApplication)getApplication();
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         Intent intent = new Intent(this, ControllerViewActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this,0,intent,0);
@@ -288,6 +292,7 @@ public class BluetoothMainController extends Service {
             super.handleMessage(msg);
             try {
                 healthRecordBean = gson.fromJson(msg.obj.toString(), HealthRecordBean.class);
+                healthRecordBean.setUserAccountId(wholeDataApplication.getUserId());
                 alarmModuleController = new AlarmModuleController(healthRecordBean);
                 alarmModuleController.isException();
             }catch (Exception e){

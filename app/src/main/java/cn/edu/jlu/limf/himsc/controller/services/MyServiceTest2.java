@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
 
+import cn.edu.jlu.limf.himsc.MyApplication.WholeDataApplication;
 import cn.edu.jlu.limf.himsc.models.HealthRecordBean;
 import cn.edu.jlu.limf.himsc.models.TestBean;
 import cn.edu.jlu.limf.himsc.utils.networking.OkHttpControl;
@@ -27,6 +28,7 @@ import cn.edu.jlu.limf.himsc.utils.networking.OkHttpControl;
 public class MyServiceTest2 extends Service {
     private DateFormat date;
     private String conn_status="";
+    private WholeDataApplication wholeDataApplication;
     private int MEDIUM=2;
     private SQLiteDatabase db;
     private OkHttpControl oKHttpControl;
@@ -55,8 +57,9 @@ public class MyServiceTest2 extends Service {
     public void onCreate() {
         super.onCreate();
         oKHttpControl=new OkHttpControl();
-        setUserAccountID("220305194609150666");
-        LitePal.initialize(this);
+//        setUserAccountID("220305194609150666");
+        wholeDataApplication=(WholeDataApplication)getApplication();
+        setUserAccountID(wholeDataApplication.getUserId());
         db=LitePal.getDatabase();
         healthRecordBean=new HealthRecordBean();
         healthRecordBean.setUserAccountId(UserAccountID);
@@ -76,7 +79,7 @@ public class MyServiceTest2 extends Service {
             public void run() {
                 try {
                     String json_post_info = gson.toJson(healthRecordBean);
-                    conn_status=oKHttpControl.post("http://49.140.92.170:8080/himsc/ReceiveUserRecord",json_post_info);
+                    conn_status=oKHttpControl.post("http://merlin-lee.com:8080/himsc/ReceiveUserRecord",json_post_info);
                     Log.d(TAG, "onCreate: "+conn_status);
                 } catch (IOException e) {
                     Log.d(TAG, "onCreate: POST出现问题"+" "+conn_status);

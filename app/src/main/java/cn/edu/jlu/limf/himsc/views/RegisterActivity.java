@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 
+import cn.edu.jlu.limf.himsc.MyApplication.WholeDataApplication;
 import cn.edu.jlu.limf.himsc.R;
 import cn.edu.jlu.limf.himsc.models.UserRegisterInfoBean;
 import cn.edu.jlu.limf.himsc.utils.networking.OkHttpControl;
@@ -26,11 +27,13 @@ import cn.edu.jlu.limf.himsc.utils.networking.OkHttpControl;
 */
 public class RegisterActivity extends AppCompatActivity {
     static String TAG="Merlin";
+    private WholeDataApplication wholeDataApplication;
     private String post_status="ERORR";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        wholeDataApplication=(WholeDataApplication)getApplication();
         Button button_Register = (Button)findViewById(R.id.regist_btn);
         final EditText edit_Text_name = (EditText)findViewById(R.id.register_edit_account);
         final EditText edit_Text_psw = (EditText)findViewById(R.id.register_edit_pwd);
@@ -46,7 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
                 userRegisterInfo.setUserAccountId(edit_Text_accountid.getText().toString());
                 userRegisterInfo.setUserAddress(edit_Text_address.getText().toString());
                 final String post_json_user_info = gson_register.toJson(userRegisterInfo);
-                final String url = "http://merlin-lee.com:8080/himsc/register_from_himsc";
+                final String url = wholeDataApplication.getURL()+"/himsc/register_from_himsc";
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -60,6 +63,9 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }
                 }).start();
+                if(post_status.equals("SUCCESS")){
+                    onDestroy();
+                }
             }
         });
     }

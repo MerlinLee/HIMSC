@@ -4,7 +4,10 @@ package cn.edu.jlu.limf.himsc.controller.HealthExceptionAlarm;
  * Created by merlin on 17-5-11.
  */
 
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+
+import org.litepal.LitePal;
 
 import cn.edu.jlu.limf.himsc.models.HealthRecordBean;
 
@@ -18,6 +21,7 @@ public class AlarmModuleController {
     private HealthRecordBean healthRecordBean;
     private HealthAlarm healthAlarm;
     private boolean isAlarm;
+    private SQLiteDatabase db;
 
     public boolean isAlarm() {
         return isAlarm;
@@ -29,6 +33,7 @@ public class AlarmModuleController {
 
     public AlarmModuleController(HealthRecordBean healthRecordBean) {
         this.healthRecordBean = healthRecordBean;
+        db= LitePal.getDatabase();
     }
 
     public void isException(){
@@ -43,6 +48,7 @@ public class AlarmModuleController {
                     @Override
                     public void run() {
                         Log.d(TAG, "run: " + "线程内数据存入数据库中");
+                        healthRecordBean.save();
                     }
                 }).start();
             }catch (Exception e){
@@ -53,6 +59,7 @@ public class AlarmModuleController {
                 @Override
                 public void run() {
                     Log.d(TAG, "run: "+"线程内数据存入数据库中");
+                    healthRecordBean.save();
                 }
             }).start();
         }

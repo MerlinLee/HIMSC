@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import cn.edu.jlu.limf.himsc.MyApplication.WholeDataApplication;
 import cn.edu.jlu.limf.himsc.controller.services.BluetoothController.AsyncTasks.LoginCheckTask;
 import cn.edu.jlu.limf.himsc.models.UserLoginInfoBean;
 import cn.edu.jlu.limf.himsc.utils.networking.OkHttpControl;
@@ -31,8 +32,8 @@ import cn.edu.jlu.limf.himsc.views.RegisterActivity;
 import cn.edu.jlu.limf.himsc.views.TestActivity;
 
 public class MainActivity extends AppCompatActivity {
+    private WholeDataApplication wholeDataApplication;
     private Context context=this;
-    private String url="http://merlin-lee.com:8080";
     static String TAG = "Merlin";
     private Intent intent_test=null;
     private String connect_status="";
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         }
         LeakCanary.install(this.getApplication());
         // Normal app init code...
+        wholeDataApplication=(WholeDataApplication) getApplication();
         Button button_login = (Button)findViewById(R.id.login_btn_login);
         Button button_register= (Button)findViewById(R.id.regist_btn);
         final EditText editText_accont = (EditText)findViewById(R.id.login_edit_account);
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         button_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String userName = editText_accont.getText().toString();
+                final String userName = editText_accont.getText().toString();
                 String userPwd=editText_psw.getText().toString();
                 final Map<String,String> map_user = new HashMap<String, String>();
                 map_user.put("userName",userName);
@@ -78,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 //                        Gson gson_str_json=new Gson();
                         String json = new Gson().toJson(map_user).toString();   //gson_str_json.toJson(userLoginInfo);
                         try {
-                            connect_status=post_login_info.post(url+"/himsc/loginCheckHIMSC",json);
+                            connect_status=post_login_info.post(wholeDataApplication.getURL()+"/himsc/loginCheckHIMSC",json);
                         } catch (IOException e) {
                             Log.e(TAG, e.toString());
                         }
@@ -98,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
+                                    wholeDataApplication.setUserId(userName);
                                     Toast.makeText(context,"登陆成功,正在跳转...",Toast.LENGTH_LONG).show();
                                 }
                             });
