@@ -4,8 +4,11 @@ package cn.edu.jlu.limf.himsc.controller.HealthExceptionAlarm;
  * Created by merlin on 17-5-11.
  */
 
+import android.Manifest;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+
+import com.zhy.m.permission.MPermissions;
 
 import org.litepal.LitePal;
 
@@ -41,7 +44,9 @@ public class AlarmModuleController {
         String isException = heartRateRange.isException(healthRecordBean.getMin(),healthRecordBean.getMax());
         if(isException.equals("ERROR")){
             //启动报警机制
-            healthAlarm = new HealthAlarm();
+
+            healthAlarm = new HealthAlarm("18689659563");
+            healthAlarm.sendSMS_status("需要急救！心跳异常！");
             try {
                 //数据也应当存入
                 new Thread(new Runnable() {
@@ -64,4 +69,6 @@ public class AlarmModuleController {
             }).start();
         }
     }
+
+
 }

@@ -12,6 +12,16 @@ import org.litepal.LitePal;
 public class WholeDataApplication extends Application {
     private static Context context;
     private String userId;
+    private String phoneNum;
+
+    public String getPhoneNum() {
+        return phoneNum;
+    }
+
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
+    }
+
     private static String URL = "http://49.140.92.170:8080";
 
     @Override
